@@ -1,0 +1,52 @@
+import java.util.Random;
+
+public class CountLettersInArray {
+
+static char[] createArray() {
+	char ch[]=new char[80];
+	Random randomChar=new Random();
+	String str="abcdefghijklmnopqrstuvwxyz";
+	for (int i=0;i<ch.length;i++) {
+		ch[i]=(char) str.charAt(randomChar.nextInt(26));
+	}
+	return ch;
+}
+public static void randomCharacter(char[] ch) {
+	for(int i=0;i<ch.length;i++) {
+		if(i%21==0) {
+			System.out.println();
+		}
+		else
+			System.out.print(ch[i]+" ");
+	}}
+
+
+
+public static void displayCount(char[] ch) {
+	char charToBeCount;
+
+	int c=0;
+	for (int i=0;i<ch.length;i++) {
+		c=0;
+	
+		
+			charToBeCount=ch[i];
+		
+		for(int j=0;j<ch.length;j++) {
+			if(ch[j]==charToBeCount)
+				c++;
+		}
+		
+		System.out.println(charToBeCount+""+c+" ");
+		}
+	}
+	
+
+public static void main(String[] args) {
+
+char ch[] =CountLettersInArray.createArray();
+CountLettersInArray.randomCharacter(ch);
+CountLettersInArray.displayCount(ch);
+
+}
+}
