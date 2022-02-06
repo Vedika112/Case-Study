@@ -23,22 +23,21 @@ public static void randomCharacter(char[] ch) {
 
 
 public static void displayCount(char[] ch) {
-	char charToBeCount;
-
-	int c=0;
-	for (int i=0;i<ch.length;i++) {
-		c=0;
-	
-		
-			charToBeCount=ch[i];
-		
-		for(int j=0;j<ch.length;j++) {
-			if(ch[j]==charToBeCount)
-				c++;
-		}
-		
-		System.out.println(charToBeCount+""+c+" ");
-		}
+        int c[]=new int[100];
+	 for(int i=0;i<ch.length;i++){
+          c[i]=1;
+          for(int j=i+1;j<ch.length;j++){
+              if(ch[i]==ch[j]){
+                  c[i]=c[i]+1;
+                 //  System.out.print(c[i]+""+ch[i]);
+                  ch[j]=0;
+              }
+          }
+      }
+      for(int i=0;i<ch.length;i++){
+          if(ch[i]!=0 && c[i]!=' ')
+          System.out.print(ch[i]+""+c[i]+" ");
+      }
 	}
 	
 
