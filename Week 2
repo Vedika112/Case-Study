@@ -1,0 +1,181 @@
+abstract class Item{
+	private int IdNo,noOfCopies;
+	private String title;
+	//Constructor
+	public Item() {
+		IdNo=1234;
+		noOfCopies=2;
+		title="Discovery of India";
+	}
+  //getters and setters
+	public int getIdNo() {
+		return IdNo;
+	}
+	public void setIdNo(int idNo) {
+		IdNo = idNo;
+	}
+	public int getNoOfCopies() {
+		return noOfCopies;
+	}
+	public void setNoOfCopies(int noOfCopies) {
+		this.noOfCopies = noOfCopies;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	//checkout and checkin method
+	public void checkout(int noOfCopy,int checkOut) {
+		System.out.println("No of copies check out: "+checkOut);
+		System.out.println("Updated no of copies: "+(noOfCopy-checkOut));
+	}
+	public void checkin(int prevCopy,int checkIn) {
+		System.out.println("No of copies check in is "+checkIn);
+		System.out.println("Updated no of copies: "+(prevCopy+checkIn));
+	}
+	// add item method
+	public void addItem(int noOfCopy,int itemAdded) {
+		System.out.println("No of item added: "+itemAdded);
+		System.out.println("Updated no of copies: "+(noOfCopy+itemAdded));
+	}
+	
+	//Unimplemented method
+	abstract void itemNo(int i);
+	abstract void title(String t);
+	abstract int noOfCopy(int c);
+}
+
+
+//subclass of abstract class item
+class WrittenItem extends Item{
+	private String author;
+
+	//Override
+	void itemNo(int i) {
+		System.out.println("ItemNo:"+i);}
+	
+	//Override
+	void title(String t) {
+		System.out.println("Title:"+t);}
+	
+	//Override
+    int noOfCopy(int c) {
+		return c;}
+    
+    //getters and setters
+    public String getAuthor() {
+		return author;}
+	public void setAuthor(String author) {
+		this.author = author;}
+	
+}
+
+//subclass of WrittenItem
+class Book extends WrittenItem{
+}
+//subclass of WrittenItem
+class Journal extends WrittenItem{
+	private int yearPublished;
+     //getters and setters
+	public int getYearPublished() {
+		return yearPublished;}
+	
+    public void setYearPublished(int yearPublished) {
+		this.yearPublished = yearPublished;}
+	
+}
+//another sub class of abstract class Item
+class MediaItem extends Item{
+
+	//Override
+	void itemNo(int i) {
+		System.out.println("ItemNo:"+i);}
+
+	//Override
+	void title(String t) {
+		System.out.println("Title:"+t);}
+
+	//Override
+	int noOfCopy(int c) {
+		return c; }
+	
+}
+//subclass of MediaItem
+class Video extends MediaItem{
+	private int yearReleased;
+	private String director,genre;
+	//getters and setters
+	public int getYearReleased() {
+		return yearReleased;
+	}
+	public void setYearReleased(int yearReleased) {
+		this.yearReleased = yearReleased;
+	}
+	public String getDirector() {
+		return director;
+	}
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	
+}
+//another subclass of MediaItem
+class CD extends MediaItem{
+	private String artist,genre;
+}
+
+
+
+
+public class CaseStudy2 {
+public static void main(String[] args) {
+	
+	System.out.println("---Information about Book ---");
+	Book b=new Book();
+	b.itemNo(1021);b.title("Harry Potter");b.setAuthor("J.K.Rowling");
+	System.out.println("Author:"+b.getAuthor());
+	int c=b.noOfCopy(12);System.out.println("No of Copies:"+c);
+	b.checkout(c,9);
+	
+	
+	
+	
+	System.out.println("---------Infomation about Video---------");
+	Video v= new Video();
+	v.itemNo(1234);v.title("Hamlet");
+	v.setGenre("Drama");v.setDirector("Shakespeare");v.setYearReleased(2016);
+	System.out.println("Genre:"+v.getGenre());System.out.println("Director:"+v.getDirector());
+	System.out.println("Year Released:"+v.getYearReleased());
+	int copy=v.noOfCopy(10);System.out.println("No of Copies:"+copy);
+	v.checkin(copy,9);
+}
+}
+
+
+
+output
+
+---Information about Book ---
+ItemNo:1021
+Title:Harry Potter
+Author:J.K.Rowling
+No of Copies:12
+No of copies check out is 9
+Updated no of copies 3
+---------Infomation about Video---------
+ItemNo:1234
+Title:Hamlet
+Genre:Drama
+Director:Shakespeare
+Year Released:2016
+No of Copies:10
+No of copies check in is 9
+Updated no of copies 19
