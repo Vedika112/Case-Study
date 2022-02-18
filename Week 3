@@ -1,1 +1,152 @@
+import java.util.HashMap;
+import java.util.Scanner;
+public class Products{
+	static HashMap<Integer,Products> h=new HashMap();
+	private int id,code,amount,pincode;
+	private String name;
+	private String address;
+	public Products() {}
+  //param constructor
+	public Products(int code,String name,int amount,int pincode,String address) {
+	this.code=code;
+	this.name=name;
+	this.amount=amount;
+	this.pincode=pincode;
+	this.address=address;
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public int getPincode() {
+		return pincode;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	int pid=10;
+	
+	
+	public void addProduct(int code,String name,int amount,int pincode,String address) 
+	{
+		h.put(pid++, new Products(code,name,amount,pincode,address));
+		System.out.println("Product is added successfully");
+	}
+  
+
+	public Products deleteProduct(int pid) {
+		return h.remove(pid);
+	}
+  
+  	public Products getProductAll(int prid) {
+		return h.get(prid);
+	}
+	
+public static void main(String[] args) {
+	
+	Scanner sc=new Scanner(System.in);
+	Products pp=new Products();
+	
+		System.out.println("Please Choose between 1 to 4");
+		int ch=1;
+		while(ch!=0) {
+			System.out.println("1.Add Product");
+			System.out.println("2.Get Product");
+			System.out.println("3.Delete Product");
+			System.out.println("4.Get all Product");
+			System.out.println("press 0 to stop");
+		  ch=sc.nextInt();
+			
+		switch(ch) {
+		case 1:
+			System.out.println("Enter product code ");
+			int cod=sc.nextInt();
+			System.out.println("Enter product name");
+			String name=sc.next();
+			System.out.println("Enter product amount");
+			int am=sc.nextInt();
+			System.out.println("Enter pincode");
+			int pin=sc.nextInt();
+			System.out.println("Enter address");
+			String add=sc.next();
+			pp.addProduct(cod,name,am,pin,add);
+			break;
+			
+		case 2:
+			System.out.println("enter Product  id");
+			int prid=sc.nextInt();
+			Products pa=pp.getProductAll(prid);
+			System.out.println("Name: "+pa.getName()+" Code "+pa.getCode()+" Amount: "+pa.getAmount()+" Address: "+pa.getAddress()+" Pincode: "+pa.getPincode());
+		    break;
+		
+		case 3:
+			System.out.println("Enter the product id to be removed");
+			int pid=sc.nextInt();
+			Products pr=pp.deleteProduct(pid);
+			System.out.println("Product is removed successfully");
+			break;
+		case 4:
+			System.out.println(h.values());
+		
+		}
+		}		
+}
+}
+
+---------output--------
+
+Please Choose between 1 to 4
+1.Add Product
+2.Get Product
+3.Delete Product
+4.Get all Product
+press 0 to stop
+1
+Enter product code 
+345
+Enter product name
+chair
+Enter product amount
+500
+Enter pincode
+564321
+Enter address
+Jaipur
+Product is added successfully
+
+1.Add Product
+2.Get Product
+3.Delete Product
+4.Get all Product
+press 0 to stop
+2
+enter Product  id
+10
+Name: chair Code 345 Amount: 500 Address: Jaipur Pincode: 564321
+
+1.Add Product
+2.Get Product
+3.Delete Product
+4.Get all Product
+press 0 to stop
+3
+Enter the product id to be removed
+10
+Product is removed successfully
+
+1.Add Product
+2.Get Product
+3.Delete Product
+4.Get all Product
+press 0 to stop
+0
 
